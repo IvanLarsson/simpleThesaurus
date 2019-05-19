@@ -1,0 +1,23 @@
+
+
+RewriteEngine on
+
+# Remove need of .php extensions
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+Options -Indexes +FollowSymLinks
+
+# All access controls and authentication are disabled
+# in this directory
+Satisfy Any
+
+# Authorization by IP, denied by default
+Order Deny,Allow
+Deny from None
+Allow from All
+
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Headers "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+Header add Access-Control-Allow-Methods "GET, PUT, POST, UPDATE, DELETE, OPTIONS"
