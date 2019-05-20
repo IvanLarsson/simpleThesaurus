@@ -27,15 +27,15 @@ function connect() {
     return $mysqli;
 }
 
-function requirePost() {
-    if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-        httpErr(400, 'only post accepted');
+function requirePut() {
+    if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'PUT') {
+        httpErr(405, 'only put accepted');
     }
 }
 
 function requireGet() {
     if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'GET') {
-        httpErr(400, 'only get accepted');
+        httpErr(405, 'only get accepted');
     }
 }
 
@@ -54,7 +54,6 @@ function payload() {
 
 /* Return HTTP status error with optional JSON message */
 function httpErr($status, $message = null) {
-    //	error_log("vad e msg: ". $message);
     http_response_code($status);
     if ($message == null) {
         die();
@@ -83,14 +82,7 @@ function fail($message) {
     }
 }
 
-
-function allowCors() {
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
-}
-
-
+// Check is string is a of a json format
 function isJSON($string) {
     json_decode($string);
     return (json_last_error() == JSON_ERROR_NONE);
