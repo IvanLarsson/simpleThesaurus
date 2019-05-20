@@ -1,6 +1,6 @@
 <?php 
-require_once("_lib.php");
-requireGet();
+require_once('_lib.php');
+requireGet(); // Only allow GET
 
 
 $synonyms = array();
@@ -17,10 +17,5 @@ if($rst->num_rows != 0){
     }
 } 
 
-// Return message OK/200
+// Return message OK/200 and all words grouped as synonyms
 httpJson('{"allWords": '.json_encode($synonyms).'}');
-
-
-
-
-// php -S localhost:8091

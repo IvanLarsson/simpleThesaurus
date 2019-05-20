@@ -1,12 +1,11 @@
 <?php
-require_once('/_lib.php');
-requirePost();
-$payload = payload();
-
+require_once('_lib.php');
+requirePut();   // Only allow PUT 
+$payload = payload(); // Get payload from request
 
 $id = rand(0, 9999); // used as a way to group words
 
-
+// Create value string for database insert
 foreach ($payload->words as $word) {
     $str = $str . '('.$id.', "'.$mysqli->escape_string($word).'"),'; 
  }
@@ -19,6 +18,5 @@ if (!$rst) {
     fail('SQL error: ' . $mysqli->error);
 }
 
-//echo json_encode($payload);
-
+// Returns 200
 httpOk("Saved");
