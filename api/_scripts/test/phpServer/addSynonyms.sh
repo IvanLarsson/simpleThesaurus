@@ -1,5 +1,5 @@
 curl -v --request \
-  POST http://localhost:8091/thesaurus/addSynonyms/addSynonyms.php \
+  PUT http://localhost:8091/thesaurus/addSynonyms/addSynonyms.php \
   --data '{"words": ["strong", "able", "athletic", "solid", "tough", "tenacious"]}'
 
 
